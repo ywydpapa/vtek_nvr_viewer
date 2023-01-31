@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
     autoPlay: true,
   );
   VlcPlayerController _vlcViewController3 = new VlcPlayerController.network(
-    "rtsp://coredjk:core2020@swc9004.iptime.org:554/Streaming/Channels/302",
+    "rtsp://coredjk:core2020@swc200e.iptimecam.com:21064/stream_ch00_0",
     autoPlay: true,
   );
 
