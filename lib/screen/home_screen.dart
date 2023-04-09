@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vtek_nvr_viewer/screen/map_screen.dart';
+import 'package:vtek_nvr_viewer/screen/list_screen.dart';
 
 class HomeScreen extends StatelessWidget{
   const HomeScreen({Key? key}):super(key: key);
@@ -74,22 +75,35 @@ class _Image extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Center(
-      child: Image.asset('../assets/images/logo.png'),
+      child: Image.asset('lib/assets/images/logo.png'),
     );
   }
 }
 
-class _EntryButton extends StatelessWidget{
-  const _EntryButton({Key? key}):super(key: key);
+class _EntryButton extends StatelessWidget {
+  const _EntryButton({Key? key}) :super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ElevatedButton(onPressed: (){},
-            child: Text('View NVR'),
+        ElevatedButton(onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => MapScreen(),
+            ),
+          );
+        },
+          child: Text('View NVR Map'),
+        ),
+        ElevatedButton(onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => ListScreen(),
+            ),
+          );
+        },
+          child: Text('View NVR List'),
         ),
       ],
     );
