@@ -1,76 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:vtek_nvr_viewer/screen/nvr_screen.dart';
+import 'package:vtek_nvr_viewer/screen/map_screen.dart';
 
 class HomeScreen extends StatelessWidget{
-  static final LatLng nvrLatLng = LatLng(35.174617, 129.128243);
-  static final Marker marker = Marker(
-  markerId: MarkerId('nvrmark'),
-  position: nvrLatLng,
-  );
-
-  static final Circle circle = Circle(
-      circleId: CircleId('nvrCircle'),
-      center: nvrLatLng,
-    fillColor: Colors.blue.withOpacity(0.5),
-    radius: 100,
-    strokeColor: Colors.blue,
-    strokeWidth: 1,
-  );
-
   const HomeScreen({Key? key}):super(key: key);
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: renderAppBar(),
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: nvrLatLng,
-          zoom: 16,
+      backgroundColor: Colors.blue[100]!,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(child: _Logo()),
+              Expanded(child: _Image()),
+              Expanded(child: _EntryButton()),
+            ],
+          ),
         ),
-        myLocationButtonEnabled: true,
-        markers: Set.from([marker]),
-        onTap: (cordinate){
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NvrView()),
-          );
-        },
-        circles: Set.from([circle]),
       ),
     );
   }
+}
 
-  AppBar renderAppBar(){
-    return AppBar(
-      centerTitle: true,
-      title: Text('NVR 위치',
-      style: TextStyle(
-        color: Colors.blue,
-        fontWeight: FontWeight.w700,
+class _Logo extends StatelessWidget{
+  const _Logo({Key? key}):super(key:key);
+
+  @override
+  Widget build(BuildContext context){
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(16.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blue[300]!,
+              blurRadius: 12.0,
+              spreadRadius: 2.0,
+            ),
+          ],
+        ),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.videocam,
+              color: Colors.white,
+              size: 40.0,
+            ),
+            SizedBox(width: 12.0),
+            Text(
+                'NVR Viewer',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30.0,
+                letterSpacing: 4.0,
+               ),
+             ),
+           ],
+         ),
+       ),
       ),
-      ),
-      backgroundColor: Colors.white,
     );
   }
-  Future<String> checkPermission() async{
-    final isLocationEnabled = await Geolocator.isLocationServiceEnabled();
+}
 
-    if (!isLocationEnabled){
-      return '위치 서비스 활성화가 필요합니다.';
-    }
-    LocationPermission checkedPermission = await Geolocator.checkPermission();
-    if (checkedPermission == LocationPermission.denied){
-      checkedPermission = await Geolocator.requestPermission();
-      if (checkedPermission == LocationPermission.denied){
-        return '위치 서비스 활성화가 필요합니다.';
-      }
-    }
-    if (checkedPermission == LocationPermission.deniedForever){
-      return '앱의 위치 권한 설정이 필요합니다.';
-    }
-    return '위치 권한이 허가되었습니다.';
+class _Image extends StatelessWidget{
+  const _Image({Key? key}): super(key: key);
+  @override
+  Widget build(BuildContext context){
+    return Center(
+      child: Image.asset('../assets/images/logo.png'),
+    );
+  }
+}
+
+class _EntryButton extends StatelessWidget{
+  const _EntryButton({Key? key}):super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ElevatedButton(onPressed: (){},
+            child: Text('View NVR'),
+        ),
+      ],
+    );
   }
 }

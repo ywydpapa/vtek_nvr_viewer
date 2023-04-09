@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new VlcPlayer(
               controller: _vlcViewController3,
               aspectRatio: 16/9,
-              placeholder: Text("NVR Viewer"),
+              placeholder: Text("with Security"),
             ),
           ],
         ),
