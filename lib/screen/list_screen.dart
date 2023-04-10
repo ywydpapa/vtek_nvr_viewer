@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:vtek_nvr_viewer/screen/home_screen.dart';
 import 'package:vtek_nvr_viewer/screen/nvr_screen.dart';
 
 class ListScreen extends StatelessWidget{
@@ -10,6 +9,16 @@ class ListScreen extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: renderAppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Expanded(child: _EntryButton()),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -23,6 +32,28 @@ class ListScreen extends StatelessWidget{
         ),
       ),
       backgroundColor: Colors.white,
+    );
+  }
+}
+
+class _EntryButton extends StatelessWidget {
+  const _EntryButton({Key? key}) :super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ElevatedButton(onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => NvrView(),
+            ),
+          );
+        },
+          child: Text('Office NVR'),
+        ),
+      ],
     );
   }
 }

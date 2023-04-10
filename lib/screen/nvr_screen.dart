@@ -27,13 +27,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   VlcPlayerController _vlcViewController = new VlcPlayerController.network(
-    //"rtsp://coredjk:core2020@swc9004.iptime.org:554/Streaming/Channels/102",
-    "rtsp://192.168.200.23:3001/cctv1",
+    "rtsp://coredjk:core2020@swc9004.iptime.org:554/Streaming/Channels/102",
+    //"rtsp://192.168.200.23:3001/cctv1",
     autoPlay: true,
   );
   VlcPlayerController _vlcViewController2 = new VlcPlayerController.network(
-    //"rtsp://coredjk:core2020@swc9004.iptime.org:554/Streaming/Channels/202",
-    "rtsp://192.168.200.23:3002/cctv2",
+    "rtsp://coredjk:core2020@swc9004.iptime.org:554/Streaming/Channels/202",
+    //"rtsp://192.168.200.23:3002/cctv2",
     autoPlay: true,
   );
   VlcPlayerController _vlcViewController3 = new VlcPlayerController.network(

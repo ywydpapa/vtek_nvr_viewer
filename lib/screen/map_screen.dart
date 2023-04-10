@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:vtek_nvr_viewer/screen/nvr_screen.dart';
+import 'package:vtek_nvr_viewer/screen/home_screen.dart';
 
 class MapScreen extends StatelessWidget{
   static final LatLng nvrLatLng = LatLng(35.174617, 129.128243);
